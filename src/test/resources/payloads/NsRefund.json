@@ -1,0 +1,36 @@
+{
+  "createdDate": 1674615750000,
+  "transactionNumber": "IN-000-001-CR-1",
+  "customer": {
+    "internalId": "CCP-1001128-32"
+  },
+  "currencyName": "USD",
+  "memo": "Paid To: abc customer",
+  "paymentMethod": {
+    "internalId": "7"
+  },
+  "tranId": "IN-000-001-CR-1",
+  "applyList": {
+    "apply": [
+      {
+        "doc": 123456,
+        "applyDate": 1674635550000,
+        "total": 100,
+        "refNum": "TEST-refNum"
+      }
+    ],
+    "replaceAll": false
+  },
+  "customFieldList": {
+    "customField": [
+      {
+        "scriptId": "custbody_tns_transaction_receipt_id",
+        "value": "test-receipt-1234"
+      },
+      {
+        "scriptId": "stripe_payment_gateway",
+        "value": "Stripe AU"
+      }
+    ]
+  }
+}

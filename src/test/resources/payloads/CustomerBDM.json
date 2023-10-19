@@ -1,0 +1,43 @@
+{
+  "sourceSystem": "HAMS",
+  "entityId": "AC-3YAJ-AE4Y-CR5G (USD) ABC Corporation AU Pty ltd.",
+  "id": "fecf1378-2b98-430a-b94c-2673ef44377b-USD",
+  "customerName": "ABC Corporation AU Pty ltd.",
+  "startDate": "2023-01-25T08:32:30+05:30",
+  "isPerson": false,
+  "subsidiary": "Atlassian AU BU USD",
+  "currency": "USD",
+  "isCommerceCustomer": false,
+  "gstNumber": "13798914316",
+  "vatNumber": "13798914316",
+  "customerCategory": "CUSTOMER",
+  "hamsId": "2994949191USD",
+  "billingContactName": "drajan@atlassian.com ( drajan@atlassian.com )",
+  "customerId": "customerID",
+  "transactionId": "TransactionID",
+  "customerStatus": "CUSTOMER_STATUS",
+  "isCustomerActive": true,
+  "terms": "Terms 30",
+  "billTo": {
+    "addressee": "ABC Corporation AU Pty ltd.",
+    "line1": "200 George Street",
+    "line2": "address line 2",
+    "line3": "address line 3",
+    "city": "Sydney",
+    "state": "NSW",
+    "country": "US",
+    "postalCode": "2000",
+    "phone": "9999999999"
+  },
+  "shipTo": {
+    "addressee": "ABC Corporation AU Pty ltd.",
+    "line1": "200 George Street",
+    "line2": "address line 2",
+    "line3": "address line 3",
+    "city": "Sydney",
+    "state": "NSW",
+    "country": "US",
+    "postalCode": "2000",
+    "phone": "9999999999"
+  }
+}

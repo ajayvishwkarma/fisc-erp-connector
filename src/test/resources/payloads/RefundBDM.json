@@ -1,0 +1,18 @@
+{
+  "sourceSystem": "CCP",
+  "transactionNumber": "IN-000-001-CR-1",
+  "transactionDate": "2023-01-25T08:32:30+05:30",
+  "currency": "USD",
+  "memo": "Paid To: abc customer",
+  "customerId": "CCP-1001128-32",
+  "id": "637d27ce-4157-4313-a135-a8508df56015",
+  "paymentMethod": "PAIDCC",
+  "transactionReceiptId": "test-receipt-1234",
+  "refundLines": [
+    {
+      "applyAmount": 100,
+      "applyDate": "2023-01-25T14:02:30+05:30",
+      "creditNoteId": "123456"
+    }
+  ]
+}

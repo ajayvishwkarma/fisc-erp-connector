@@ -1,0 +1,33 @@
+{
+  "entityId": "11setEntityId",
+  "id": "11",
+  "companyName": "11setCompanyName",
+  "firstName": "11setFirstName",
+  "lastName": "11setLastName",
+  "phone": "0000000011",
+  "companyType": "11setCompanyType",
+  "customerId": "84326441",
+  "categoryName": "11setCategoryName",
+  "subsidiary": "Atlassian AU BU USD",
+  "billTo": {
+    "useAddressee": true,
+    "addressee": "11billingAddressParty",
+    "line1": "11setLine1billingAddress",
+    "line2": "11setLine2",
+    "city": "11setCity",
+    "state": "11setState",
+    "country": "US",
+    "postalCode": "00011"
+  },
+  "shipTo": {
+    "useAddressee": true,
+    "addressee": "11shippingAddressParty",
+    "line1": "11setLine1shippingAddress",
+    "line2": "11setLine2",
+    "city": "11setCity",
+    "state": "11setState",
+    "country": "US",
+    "postalCode": "00011"
+  },
+  "email": "11@email.com"
+}

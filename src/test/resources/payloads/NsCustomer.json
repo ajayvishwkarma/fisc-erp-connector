@@ -1,0 +1,74 @@
+{
+  "entityId": "Test Organisation USD (117501349)",
+  "externalId": "117501349USD",
+  "companyName": "Test Organisation",
+  "startDate": 1671113750020,
+  "isPerson": false,
+  "subsidiary": {
+    "internalId": "Atlassian AU BU USD",
+    "type": {
+      "value": "subsidiary"
+    }
+  },
+  "currency": {
+    "internalId": "1"
+  },
+  "addressbookList": {
+    "addressbook": [
+      {
+        "defaultShipping": true,
+        "defaultBilling": true,
+        "label": "true",
+        "addressbookAddress": {
+          "country": {
+            "value": "_unitedStates"
+          },
+          "addressee": "true",
+          "addr1": "Address 1",
+          "addr2": "Address 2",
+          "city": "City",
+          "state": "CA",
+          "zip": "90401"
+        }
+      }
+    ]
+  },
+  "customFieldList": {
+    "customField": [
+      {
+        "scriptId": "custentity_iscommerce",
+        "value": false
+      },
+      {
+        "scriptId": "custentity_gst_number",
+        "value": "GST-tax-number"
+      },
+      {
+        "scriptId": "custentity_ccp_customer_category",
+        "value": "CCP-Category"
+      },
+      {
+        "scriptId": "custentity_hams_id",
+        "value": "Cust-HAMS-ID"
+      },
+      {
+        "scriptId": "custbody_atl_cust_type",
+        "value": "Aggregator"
+      },
+      {
+        "scriptId": "custentity_billing_contact_name",
+        "value": "CUST-BILL-CONTACT-NAME"
+      }
+    ]
+  },
+  "vatRegNumber": "vatRegNumber-123",
+  "customerId": "CUST-ID",
+  "transactionId": "TRANSACTION-ID",
+  "entityStatus": {
+    "internalId": "3"
+  },
+  "isCustomerActive": "true",
+  "terms": {
+    "internalId": "45"
+  }
+}

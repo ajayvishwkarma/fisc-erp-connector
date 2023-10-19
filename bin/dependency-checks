@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+# run security checks on the service
+
+cd "$(dirname "${BASH_SOURCE[0]}")/.."
+
+# verify that the token is set before continuing
+if [[ -z ${SRCCLR_API_TOKEN+x} ]]; then
+    echo "SRCCLR_API_TOKEN not set, not running Source Clear"
+    exit 0
+fi
+
+if [ -n "${bamboo_capability_system_jdk_JDK_11:-}" ]; then
+  export JAVA_HOME="${bamboo_capability_system_jdk_JDK_11}"
+  export PATH="$JAVA_HOME/bin:$PATH"
+fi
+
+
+exit $?

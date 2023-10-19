@@ -1,0 +1,164 @@
+info:
+  app:
+    name: "@project.name@"
+    version: "@project.version@"
+spring:
+  application.name: "@project.name@"
+
+spring.profiles.include: 'fisc-erp-connector-properties'
+
+erp-service:
+  api:
+    #host: ${MESH_DEPENDENCY_ERP_SERVICE_BASE_URL:https://erp-service--app.ap-southeast-2.dev.atl-paas.net}
+    host: ${MESH_DEPENDENCY_ERP_SERVICE_BASE_URL:http://localhost:5050}
+    customer:
+      path: '/api/v1/customer'
+    contact:
+      path: '/api/v1/contact'
+    invoice:
+      path: '/api/v1/invoice'
+    payment:
+      path: '/api/v1/payment'
+    creditNote:
+      path: '/api/v1/creditnote'
+    applyCreditNote:
+      path: '/api/v1/applyCreditnote'
+    refund:
+      path: '/api/v1/refund'
+    invoicePayment:
+      path: '/api/v1/invoice/payments/{0}'
+    lookup:
+      spokeItemMap:
+        path: '/api/v1/lookup/spokeItemMap/HAMS'
+
+httpclient:
+  connection:
+    timeout: 60000
+  read:
+    timeout: 180000
+  connections:
+    total: 100
+    perroute: 30
+
+retry:
+  maxattempts: 1
+  backOffPeriod: 2000
+
+micros:
+  rest.asap.enabled: false
+  rest.asap.client.enabled: true # enable service-proxy outbound connections with asap to disable this.
+  rest.asap.server.enabled: false
+  security:
+    slauth:
+      poco-enabled: true
+      poco:
+        enforce-enabled: true
+
+micros.metrics.tags.common:
+  - environment
+  - environment_type
+  - region
+
+axe:
+  emit-access-logs: false  # change this to have access logs
+
+spring.sleuth.sampler.probability: 1.0
+spring.sleuth.web.additionalSkipPattern: "^(?!(/test)$).*$"
+spring.sleuth.async.enabled: false
+spring.zipkin.service.name: fisc-erp-connector
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+    enabled: true
+  api-docs:
+    path: /api-docs
+
+cache:
+  lookup:
+      spokeItemMap:
+        ttlHours: 1
+
+## The following sections can be used to override values in specific environments.
+## Remember that any configuration value can be overwritten using Micros stash variables, therefore the mechanism
+## below is optional.
+
+---
+spring:
+  config:
+    activate:
+      on-profile: local
+
+swagger:
+  app:
+    url: https://localhost:8080
+
+spring.devtools.restart.enabled: true
+error.include-stacktrace: on-trace-param
+# logging.config: "classpath:logback-local.xml"
+
+metrics:
+  prefix: fisc-erp-connector.
+  env: ddev
+
+
+
+---
+spring:
+  config:
+    activate:
+      on-profile: ddev
+
+# Update to corresponding endpoint for that environment
+swagger:
+  app:
+    url: https://fisc-erp-connector.ap-southeast-2.dev.atl-paas.net
+
+metrics:
+  prefix: fisc-erp-connector.
+  env: ddev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: adev
+
+# Update to corresponding endpoint for that environment
+swagger:
+  app:
+    url: https://fisc-erp-connector--app.ap-southeast-2.dev.atl-paas.net
+
+metrics:
+  prefix: fisc-erp-connector.
+  env: adev
+
+---
+spring:
+  config:
+    activate:
+      on-profile: stg-east
+
+# Update to corresponding endpoint for that environment
+swagger:
+  app:
+    url: https://fisc-erp-connector.us-east-1.staging.atl-paas.net
+
+
+metrics:
+  prefix: fisc-erp-connector.
+  env: stg-east
+---
+spring:
+  config:
+    activate:
+      on-profile: prod
+
+# Update to corresponding endpoint for that environment
+swagger:
+  app:
+    url: https://fisc-erp-connector.us-east-1.prod.atl-paas.net
+
+metrics:
+  prefix: fisc-erp-connector.
+  env: prod

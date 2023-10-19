@@ -1,0 +1,23 @@
+#!/bin/bash
+
+function run() { (set -x ; "$@") }
+
+initial_status=$(git status --porcelain --untracked=no)
+if [[ $initial_status != "" ]]; then
+  run git stash save && STASHED=1
+fi
+
+find gradle/ -type f | xargs -I{} bash -x -c "git rm {}"
+
+# Clean up any empty directories leftover from file renames or deletes
+run find . -type d -empty -delete
+
+run git commit -a -m "bin/first-run tweaks to the environment
+
+* cleaned up left-over gradle noise
+* delete left-over freemarker macros file
+"
+
+if [[ $STASHED == 1 ]]; then
+  run git stash pop
+fi

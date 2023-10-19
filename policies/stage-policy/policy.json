@@ -1,0 +1,36 @@
+{
+  "allow": [
+    {
+      "description": "allow authenticated services to endpoints",
+      "paths": ["/api/v1/**"],
+      "methods": ["*"],
+      "principals": {
+        "staff": {
+          "groups": ["micros-sv--fisc-erp-connector-dl-non-prod"]
+        },
+        "asap": {
+          "issuers": [
+            "micros/fisc",
+            "micros/perfcluster"
+          ]
+        },
+        "build": {
+          "plans": [
+            "it-bamboo:FS-FERPC",
+            "deployment-bamboo:FS-FERPC"
+          ]
+        }
+      }
+    },
+    {
+      "description": "Bypass routes",
+      "methods": ["*"],
+      "paths": ["/heartbeat", "/deepcheck", "/swagger-ui.html", "/swagger-ui/**", "/api-docs/**"],
+      "principals": {
+        "open": {
+          "reason": "Bypass routes"
+        }
+      }
+    }
+  ]
+}

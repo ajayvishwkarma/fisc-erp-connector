@@ -1,0 +1,17 @@
+{
+  "payment": 100.0,
+  "tranDate": "2022-12-12T00:00:00.000+00:00",
+  "tranId": "TEST-HdVwA9EGq6kamgw",
+  "account": {
+    "internalId": "100004"
+  },
+  "applyList": {
+    "apply": [
+      {}
+    ],
+    "replaceAll": false
+  },
+  "customFieldList": {
+    "customField": []
+  }
+}

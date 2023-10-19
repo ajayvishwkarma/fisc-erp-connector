@@ -1,0 +1,17 @@
+version: 2
+serviceProxy:
+  dev:
+    default:
+      - type: Simple
+        env: ddev
+    adev:
+      - type: Simple
+        env: adev
+  staging:
+    default:
+      - type: Simple
+        env: stg-east
+  prod:
+    default:
+      - type: Simple
+        env: prod-east

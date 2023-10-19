@@ -1,0 +1,4 @@
+hasNonMicrosDatabase: False
+
+sentry:
+  project: "fisc-erp-connector"

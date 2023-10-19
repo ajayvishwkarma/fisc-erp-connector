@@ -1,0 +1,31 @@
+{
+  "tests": [{
+    "name": "accept open heartbeat end point without authentication",
+    "path": "/heartbeat",
+    "method": "GET",
+    "mechanism": "asap",
+    "principals": ["micros/random-service"],
+    "allowed": true
+  },{
+    "name": "accept swagger endpoint without authentication",
+    "path": "/swagger-ui.html",
+    "method": "GET",
+    "mechanism": "asap",
+    "principals": ["micros/random-service"],
+    "allowed": true
+  }, {
+    "name": "Allow authenticated api",
+    "path": "/api/v1/payment/1",
+    "method": "GET",
+    "mechanism": "asap",
+    "principals": ["micros/fisc"],
+    "allowed": true
+  }, {
+    "name": "Deny unauthenticated api",
+    "path": "/api/greetings/Charlie",
+    "method": "GET",
+    "mechanism": "asap",
+    "principals": ["micros/random-service"],
+    "allowed": false
+  }]
+}

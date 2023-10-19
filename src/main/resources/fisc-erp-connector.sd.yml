@@ -1,0 +1,172 @@
+# The variables are extracted from the POM file
+name: "@project.name@"
+description: "@project.description@"
+organization: "Commerce-IT"
+network:
+  ingress: internal
+links:
+  healthcheck:
+    uri: /heartbeat
+    port: 8080
+notifications:
+  email: "drajan@atlassian.com"
+requiresAsap: true
+buildNumber: "@build.timestamp@"
+
+# NOTE: You will need to update this to match your service as you build it out
+computeClassification:
+  dataType:
+    - None
+
+compose:
+  @project.artifactId@:
+    image: ${MICROS_DEPLOY_DOCKER_IMAGE_NAME}
+    tag: "${MICROS_DEPLOY_APP_VERSION}"
+    ports:
+      - 8080:8080
+      - 9010:9010
+
+scaling:
+  instance: t3.small # Change this to a different instance if required, go/instance-types
+
+# The configuration below enables usage of Service Proxy
+# For more info, see: https://hello.atlassian.net/wiki/spaces/SPY/pages/504419340/Service+Proxy+User+Documentation
+serviceProxy:
+  enabled: true
+  ingress:
+    authentication:
+      # For more info on configuring usage of the Slauth Platform sidecar, see: https://developer.atlassian.com/platform/slauth/serviceproxy/configuration/
+      enabled: true
+    rateLimit:
+      enabled: true
+  plugins:
+    auth:
+      logLevel: info
+      authentication:
+        plugins:
+        - type: asap
+        - type: slauthtoken
+        - type: build
+        - type: usercontext
+        - type: staffcontext
+      authorization:
+        # This enables usage of Poco - https://developer.atlassian.com/platform/poco/ingress/defining/
+        plugins:
+        - type: poco
+    rateLimit:
+      descriptors:
+        - key: client
+          type: header
+          header: X-Slauth-Issuer
+  egress:
+    authentication:
+      enabled: true
+    dependencies:
+      - name: erp-service
+
+config:
+  environmentVariables:
+    # See https://aws.amazon.com/ec2/instance-types/ for actual memory available for each instance type
+    MEMORY_OPTS: "-XX:MaxRAMPercentage=25.0" # 25% of system memory
+
+# See https://bitbucket.org/atlassian/ps-docker-base/src/master/ for information on how to:
+# - Enable JMX metrics collection
+# - Enable file crash dump and error log uploading to S3
+# - Flamegraph support
+# - New relic support
+
+environmentOverrides:
+  prod:
+    resources:
+      - name: fisc-erp-connector
+        type: shipyard
+        attributes:
+          policyId: fisc-erp-connector-prod
+          provision: true
+          resourceType: heimdall-rate-limit-policy
+          promotable: true
+          tags:
+            - heimdall
+          content:
+            - key: client
+              rate_limit:
+                - requests_per_unit: 500
+                  unit: minute
+  staging:
+    resources:
+      #Enable chaos engineering by default in staging environments
+      - type: faila
+        name: approx-one-termination-in-24-hours
+        attributes:
+          type: termination
+          schedule: "0 0 * * * ?"
+          probability: 4
+      - name: fisc-erp-connector
+        type: shipyard
+        attributes:
+          policyId: fisc-erp-connector-stg
+          provision: true
+          resourceType: heimdall-rate-limit-policy
+          promotable: true
+          tags:
+            - heimdall
+          content:
+            - key: client
+              rate_limit:
+                - requests_per_unit: 10000
+                  unit: minute
+
+  local:
+    compose:
+      @project.artifactId@:
+        image: docker.atl-paas.net/@docker.namespace@/@project.artifactId@
+        tag: "@git.commit.id@@docker.tag.suffix@"
+        ports:
+          - 8080:8080
+          - 9010:9010
+    
+    config:
+      environmentVariables:
+        MEMORY_OPTS: "-Xmx512M"
+
+  ddev:
+    config:
+      environmentVariables:
+        LOGGER_ASAP_LEVEL: INFO
+        LOGGER_ROOT_LEVEL: INFO
+    resources:
+      - name: fisc-erp-connector
+        type: shipyard
+        attributes:
+          policyId: fisc-erp-connector-ddev
+          provision: true
+          resourceType: heimdall-rate-limit-policy
+          promotable: true
+          tags:
+            - heimdall
+          content:
+            - key: client
+              rate_limit:
+                - requests_per_unit: 10000
+                  unit: minute
+
+  adev:
+    config:
+      environmentVariables:
+        LOGGER_ASAP_LEVEL: INFO
+        LOGGER_ROOT_LEVEL: INFO
+    resources:
+      - name: fisc-erp-connector
+        type: shipyard
+        attributes:
+          policyId: fisc-erp-connector-adev
+          provision: true
+          resourceType: heimdall-rate-limit-policy
+          promotable: true
+          tags:
+            - heimdall
+          content:
+            - key: client
+              rate_limit:
+                - requests_per_unit: 10000
+                  unit: minute

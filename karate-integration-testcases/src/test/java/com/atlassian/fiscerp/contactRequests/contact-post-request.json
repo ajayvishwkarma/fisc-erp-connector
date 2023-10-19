@@ -1,0 +1,30 @@
+{
+  "entityId": "First Last one (1489212123)",
+  "company": {
+    "internalId": "117501349USD"
+  },
+  "firstName": "First",
+  "lastName": "Last",
+  "email": "ab1b6918-2@inttest.com",
+  "externalId": "1489212123",
+  "addressbookList": {
+    "addressbook": [
+      {
+        "defaultShipping": true,
+        "defaultBilling": true,
+        "label": "true",
+        "addressbookAddress": {
+          "country": {
+            "value": "_unitedStates"
+          },
+          "addressee": "Test Organisation",
+          "addr1": "Address 1",
+          "addr2": "Address 2",
+          "city": "City",
+          "state": "CA",
+          "zip": "90401"
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "transactionNumber": "TEST-HdVwA9EGq6kamgw",
+  "transactionCreateDate": "2022-12-12T00:00:00Z",
+  "totalAmount": 100,
+  "paymentApplyLines": [
+    {
+      "invoiceNumber": "TEST-NWmH_cjPEDykRCT"
+    }
+  ],
+  "cashAccount": "100004"
+}
